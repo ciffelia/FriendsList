@@ -1,0 +1,15 @@
+{
+  "name": "friends-list",
+  "private": true,
+  "scripts": {
+    "start": "node src/main.js",
+    "test": "standard",
+    "fix": "standard --fix"
+  },
+  "dependencies": {
+    "twit": "^2.2.11"
+  },
+  "devDependencies": {
+    "standard": "^12.0.1"
+  }
+}

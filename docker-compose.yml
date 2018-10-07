@@ -1,0 +1,15 @@
+version: '3.7'
+
+services:
+  friends-list:
+    image: docker.ciffelia.com/friends-list
+    build: .
+    restart: always
+    init: true
+    environment:
+      - TWITTER_CONSUMER_KEY
+      - TWITTER_CONSUMER_SECRET
+      - TWITTER_ACCESS_TOKEN_KEY
+      - TWITTER_ACCESS_TOKEN_SECRET
+      - TWITTER_FOLLOWING_LIST_ID
+      - TWITTER_FOLLOWER_LIST_ID
