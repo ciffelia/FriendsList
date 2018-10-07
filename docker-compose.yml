@@ -3,7 +3,10 @@ version: '3.7'
 services:
   friends-list:
     image: docker.ciffelia.com/friends-list
-    build: .
+    build:
+      context: .
+      cache_from:
+        - docker.ciffelia.com/friends-list
     restart: always
     init: true
     environment:
