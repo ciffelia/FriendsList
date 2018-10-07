@@ -41,10 +41,11 @@ class FriendsList {
   }
 
   async minutelyTask () {
-    await Promise.all([
-      this.syncFollowing(),
-      this.syncFollowers()
-    ])
+    // await Promise.all([
+    //   this.syncFollowing(),
+    //   this.syncFollowers()
+    // ])
+    await this.syncFollowing()
   }
 }
 
