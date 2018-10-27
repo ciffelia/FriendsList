@@ -14,6 +14,7 @@ class FriendsList {
 
   async start () {
     this.userId = await this.apiProvider.fetchMyUserId()
+
     setInterval(this.minutelyTask, 1000 * 60)
     await this.minutelyTask()
   }
@@ -35,16 +36,7 @@ class FriendsList {
     await this.syncList(process.env.TWITTER_FOLLOWING_LIST_ID, realFollowing)
   }
 
-  async syncFollowers () {
-    const realFollowers = await this.apiProvider.fetchFollowerIds(this.userId)
-    await this.syncList(process.env.TWITTER_FOLLOWER_LIST_ID, realFollowers)
-  }
-
   async minutelyTask () {
-    // await Promise.all([
-    //   this.syncFollowing(),
-    //   this.syncFollowers()
-    // ])
     await this.syncFollowing()
   }
 }

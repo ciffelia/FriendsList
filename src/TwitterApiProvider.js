@@ -19,15 +19,6 @@ class TwitterApiProvider {
     return apiResult.data.ids
   }
 
-  async fetchFollowerIds (userId) {
-    const apiResult = await this.twit.get('followers/ids', {
-      user_id: userId,
-      stringify_ids: true,
-      count: 5000
-    })
-    return apiResult.data.ids
-  }
-
   async fetchListMemberIds (listId) {
     const apiResult = await this.twit.get('lists/members', {
       list_id: listId,
