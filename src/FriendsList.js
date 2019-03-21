@@ -1,13 +1,11 @@
 const TwitterApiProvider = require('./TwitterApiProvider')
 
 class FriendsList {
-  constructor () {
-    this.apiProvider = new TwitterApiProvider({
-      consumer_key: process.env.TWITTER_CONSUMER_KEY,
-      consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
-      access_token: process.env.TWITTER_ACCESS_TOKEN_KEY,
-      access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET
-    })
+  constructor (config) {
+    const { followingListId, ...apiConfig } = config
+
+    this.followingListId = followingListId
+    this.apiProvider = new TwitterApiProvider(apiConfig)
 
     this.minutelyTask = this.minutelyTask.bind(this)
   }
@@ -33,7 +31,7 @@ class FriendsList {
 
   async syncFollowing () {
     const realFollowing = await this.apiProvider.fetchFollowingIds(this.userId)
-    await this.syncList(process.env.TWITTER_FOLLOWING_LIST_ID, realFollowing)
+    await this.syncList(this.followingListId, realFollowing)
   }
 
   async minutelyTask () {

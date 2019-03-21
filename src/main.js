@@ -1,5 +1,8 @@
 const FriendsList = require('./FriendsList')
+const config = require('../config')
 
-const friendsList = new FriendsList()
+const apps = config.map(config => new FriendsList(config))
 
-friendsList.start()
+for (const app of apps) {
+  app.start()
+}
