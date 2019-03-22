@@ -32,19 +32,23 @@ class TwitterApiProvider {
   async addUsersToList (listId, userIds) {
     if (userIds.length === 0) return
 
-    await this.twit.post('lists/members/create_all', {
-      list_id: listId,
-      user_id: userIds
-    })
+    for (let i = 0; i < userIds.length; i += 100) {
+      await this.twit.post('lists/members/create_all', {
+        list_id: listId,
+        user_id: userIds.slice(i, i + 100)
+      })
+    }
   }
 
   async removeUsersFromList (listId, userIds) {
     if (userIds.length === 0) return
 
-    await this.twit.post('lists/members/destroy_all', {
-      list_id: listId,
-      user_id: userIds
-    })
+    for (let i = 0; i < userIds.length; i += 100) {
+      await this.twit.post('lists/members/destroy_all', {
+        list_id: listId,
+        user_id: userIds.slice(i, i + 100)
+      })
+    }
   }
 }
 
