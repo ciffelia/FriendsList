@@ -13,7 +13,7 @@ class FriendsList {
   async start () {
     this.userId = await this.apiProvider.fetchMyUserId()
 
-    setInterval(this.minutelyTask, 1000 * 60)
+    setInterval(this.minutelyTask, 1000 * 65)
     await this.minutelyTask()
   }
 
