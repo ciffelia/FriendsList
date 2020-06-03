@@ -7,4 +7,4 @@ services:
     restart: always
     init: true
     volumes:
-      - ./config.js:/root/FriendsList/config.js
+      - ./config.js:/home/friends_list/config.js
