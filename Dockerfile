@@ -4,7 +4,8 @@ ENV NODE_ENV production
 
 ADD package.json yarn.lock /root/FriendsList/
 WORKDIR /root/FriendsList
-RUN yarn --pure-lockfile && yarn cache clean
+RUN yarn install --pure-lockfile && \
+    yarn cache clean
 
 ADD . /root/FriendsList
 
