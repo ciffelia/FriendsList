@@ -1,4 +1,4 @@
-FROM node:12.18.0-alpine
+FROM node:14-alpine
 
 # Switch to non-root user
 RUN adduser -D friends_list
@@ -7,11 +7,9 @@ WORKDIR /home/friends_list
 
 ENV NODE_ENV production
 
-COPY --chown=friends_list:friends_list ./package.json ./yarn.lock /home/friends_list/
+COPY --chown=friends_list:friends_list . .
 
-RUN yarn install --pure-lockfile && \
-    yarn cache clean
+RUN yarn install --immutable && \
+    yarn cache clean --mirror
 
-COPY --chown=friends_list:friends_list . /home/friends_list
-
-CMD ["yarn", "start"]
+ENTRYPOINT ["yarn", "run", "start"]

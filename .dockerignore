@@ -10,8 +10,13 @@
 **/yarn-debug.log*
 **/yarn-error.log*
 
-# Dependency directories
-**/node_modules
+# Yarn
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+.pnp.*
 
 # WebStorm
 .idea
