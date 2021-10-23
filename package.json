@@ -1,6 +1,10 @@
 {
   "name": "friends-list",
   "private": true,
+  "author": "Ciffelia <mc.prince.0203@gmail.com> (https://ciffelia.com/)",
+  "repository": "github:ciffelia/FriendsList",
+  "homepage": "https://github.com/ciffelia/FriendsList#readme",
+  "bugs": "https://github.com/ciffelia/FriendsList/issues",
   "scripts": {
     "start": "node src/main.js",
     "lint": "standard",
