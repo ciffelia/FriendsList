@@ -1,5 +1,5 @@
 const FriendsList = require('./FriendsList')
-const config = require('../config')
+const config = require(process.env.FRIENDS_LIST_CONFIG || '../config')
 
 const apps = config.map(config => new FriendsList(config))
 
