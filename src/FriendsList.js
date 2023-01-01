@@ -12,6 +12,7 @@ class FriendsList {
 
   async start () {
     this.userId = await this.apiProvider.fetchMyUserId()
+    this.log('Starting.')
 
     setInterval(this.minutelyTask, 1000 * 65)
     await this.minutelyTask()
@@ -23,10 +24,21 @@ class FriendsList {
     const userIdsToAddToList = users.filter(user => !listedUserIds.includes(user))
     const userIdsToRemoveFromList = listedUserIds.filter(user => !users.includes(user))
 
+    if (userIdsToAddToList.length > 0) {
+      this.log(`New friend(s) detected: ${userIdsToRemoveFromList.join(', ')}`)
+    }
+    if (userIdsToRemoveFromList.length > 0) {
+      this.log(`Deleted friend(s) detected: ${userIdsToRemoveFromList.join(', ')}`)
+    }
+
     await Promise.all([
       this.apiProvider.addUsersToList(listId, userIdsToAddToList),
       this.apiProvider.removeUsersFromList(listId, userIdsToRemoveFromList)
     ])
+
+    if (userIdsToAddToList > 0 || userIdsToRemoveFromList > 0) {
+      this.log('Sync completed.')
+    }
   }
 
   async syncFollowing () {
@@ -36,6 +48,11 @@ class FriendsList {
 
   async minutelyTask () {
     await this.syncFollowing()
+  }
+
+  log (...data) {
+    const ctx = this.userId ?? 'unknown'
+    console.log(`[${ctx}]`, ...data)
   }
 }
 
