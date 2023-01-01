@@ -32,5 +32,10 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v3
         with:
-          tags: ghcr.io/ciffelia/friends-list:latest
+          tags: |
+            ghcr.io/ciffelia/friends-list:git-${{ github.sha }}
+            ghcr.io/ciffelia/friends-list:latest
+          platforms: |
+            linux/amd64
+            linux/arm64
           push: ${{ github.ref == 'refs/heads/master' }}
