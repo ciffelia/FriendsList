@@ -14,7 +14,7 @@
     "twit": "^2.2.11"
   },
   "devDependencies": {
-    "standard": "^16.0.4"
+    "standard": "^17.0.0"
   },
   "packageManager": "yarn@3.3.1"
 }
