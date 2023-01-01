@@ -1,0 +1,17 @@
+{
+  $schema: 'https://docs.renovatebot.com/renovate-schema.json',
+  extends: [
+    'config:base',
+    ':semanticCommitsDisabled',
+    ':prHourlyLimitNone',
+    ':prConcurrentLimitNone',
+  ],
+  timezone: 'Asia/Tokyo',
+  schedule: ['every weekend'],
+  packageRules: [
+    {
+      matchManagers: ['npm'],
+      rangeStrategy: 'bump',
+    },
+  ],
+}
