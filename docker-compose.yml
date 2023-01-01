@@ -4,4 +4,4 @@ services:
     restart: unless-stopped
     init: true
     volumes:
-      - ./config.js:/home/friends_list/config.js
+      - ./config.js:/config/config.js:ro

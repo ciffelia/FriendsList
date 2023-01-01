@@ -1,11 +1,12 @@
-FROM node:18.12.1-alpine
+FROM node:18.12.1-bullseye-slim
 
 # Switch to non-root user
-RUN adduser -D friends_list
+RUN useradd --create-home --user-group friends_list
 USER friends_list
 WORKDIR /home/friends_list
 
 ENV NODE_ENV production
+ENV FRIENDS_LIST_CONFIG /config/config.js
 
 COPY --chown=friends_list:friends_list . .
 
