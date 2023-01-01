@@ -1,4 +1,4 @@
-FROM node:18.12.1-bullseye-slim
+FROM node:19.3.0-bullseye-slim
 
 # Switch to non-root user
 RUN useradd --create-home --user-group friends_list
