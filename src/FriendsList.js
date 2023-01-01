@@ -25,7 +25,7 @@ class FriendsList {
     const userIdsToRemoveFromList = listedUserIds.filter(user => !users.includes(user))
 
     if (userIdsToAddToList.length > 0) {
-      this.log(`New friend(s) detected: ${userIdsToRemoveFromList.join(', ')}`)
+      this.log(`New friend(s) detected: ${userIdsToAddToList.join(', ')}`)
     }
     if (userIdsToRemoveFromList.length > 0) {
       this.log(`Deleted friend(s) detected: ${userIdsToRemoveFromList.join(', ')}`)
