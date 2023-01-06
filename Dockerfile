@@ -1,14 +1,29 @@
+FROM --platform=$BUILDPLATFORM node:18.12.1-bullseye-slim as deps-downloader
+
+# Switch to unpriviledged user
+RUN useradd --create-home --user-group friends-list
+USER friends-list
+WORKDIR /home/friends-list/friends-list
+
+ENV NODE_ENV production
+
+COPY --chown=friends-list:friends-list . .
+
+RUN yarn install --immutable --mode=skip-build
+
 FROM node:18.12.1-bullseye-slim
 
-# Switch to non-root user
-RUN useradd --create-home --user-group friends_list
-USER friends_list
-WORKDIR /home/friends_list
+# Switch to unpriviledged user
+RUN useradd --create-home --user-group friends-list
+USER friends-list
+WORKDIR /home/friends-list/friends-list
 
 ENV NODE_ENV production
 ENV FRIENDS_LIST_CONFIG /config/config.js
 
-COPY --chown=friends_list:friends_list . .
+COPY --chown=friends-list:friends-list . .
+COPY --from=deps-downloader --chown=friends-list:friends-list /home/friends-list/friends-list/.yarn/cache ./.yarn/cache
+COPY --from=deps-downloader --chown=friends-list:friends-list /home/friends-list/friends-list/.pnp.* ./
 
 RUN yarn install --immutable && \
     yarn cache clean --mirror
