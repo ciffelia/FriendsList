@@ -1,4 +1,4 @@
-FROM --platform=$BUILDPLATFORM node:18.14.2-bullseye-slim as deps-downloader
+FROM --platform=$BUILDPLATFORM node:18.15.0-bullseye-slim as deps-downloader
 
 # Switch to unpriviledged user
 RUN useradd --create-home --user-group friends-list
@@ -11,7 +11,7 @@ COPY --chown=friends-list:friends-list . .
 
 RUN yarn install --immutable --mode=skip-build
 
-FROM node:18.14.2-bullseye-slim
+FROM node:18.15.0-bullseye-slim
 
 # Switch to unpriviledged user
 RUN useradd --create-home --user-group friends-list
